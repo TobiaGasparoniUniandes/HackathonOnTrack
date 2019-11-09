@@ -15,27 +15,31 @@
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
   <title>Why Hello!!</title>
-	<style>
-		#map {
-			height: 100vh;
-			width: 100%;
-		}
-	</style>
+  <style>
+    #map {
+      height: 100vh;
+      width: 60%;
+      float: left;
+      display: inline-block;
+    }
+  </style>
 </head>
 
 <body>
-	<div id="map"></div>
-
+  <div id="map"></div>
+  <div>
+    <h1>Aquí saldrán los resultados</h1>
+    <p id="mensaje"></p>
+  </div>
   <!--Google Maps-->
   <!-- Start your project here-->
 
   <!-- SCRIPTS -->
-	<script src="algoritmo.js"></script>
-      
+  <script src="algoritmo.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlTvyFAq6adNUbQfvMlAhdrbjpSOOi_8Y&callback=initMap"
 
-        async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlTvyFAq6adNUbQfvMlAhdrbjpSOOi_8Y&callback=initMap"
+    async defer></script>
 
 
   <!-- JQuery -->
