@@ -15,56 +15,28 @@
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
   <title>Why Hello!!</title>
+	<style>
+		#map {
+			height: 100vh;
+			width: 100%;
+		}
+	</style>
 </head>
 
 <body>
-
-  <!-- Start your project here-->
-  <!--Google map-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-ontrack">
-    <h1 class="navbar-brand" id="titulo">Grupo 3 - Nosotros también predecimos lo inesperado</h1>
-    <img class="logo" src="https://ontrack.global/assets/logos/school-logo.png" alt="">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Elegir parada" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-      </form>
-    </div>
-  </nav>
-  <div id="map-container-google-1">
-    <!-- <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
-      style="border:0" allowfullscreen></iframe> -->
-    <div id="map" class="map-container">
-      <!-- Aquí vendrá el algoritmo de Camilo y Tobia -->
-      <script src="algoritmo.js"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ2wSiH5-0oEREOYgw2VRjEkHSHV_yRgA&callback=initMap"
-        async defer></script>
-    </div>
-
-  </div>
-
-  <div class="sidebar">
-    <div class="card" style="width: 25rem;">
-      <img src="img/ontrack_School.jpg" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title">Porcertanje de Progreso</h5>
-        <p class="card-text">Querido padre de familia, tu hij@ está cerca del llegar al colegio.</p>
-        <a href="#" class="btn btn-primary">Calcular</a>
-        <div id="myProgress">
-          <div id="myBar"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+	<div id="map"></div>
 
   <!--Google Maps-->
   <!-- Start your project here-->
 
   <!-- SCRIPTS -->
+	<script src="algoritmo.js"></script>
+      
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlTvyFAq6adNUbQfvMlAhdrbjpSOOi_8Y&callback=initMap"
+
+        async defer></script>
+
 
   <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
