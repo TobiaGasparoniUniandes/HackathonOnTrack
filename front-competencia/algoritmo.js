@@ -6,7 +6,9 @@ var paradas = [
 	{ location: "Basílica Menor Nuestra Señora de Lourdes, Bogota" },
 	{ location: "Carulla Calle 102, Bogota" }
 ];
+var destinoActual;
 var respuestaAPI;
+var nActual;
 
 function totDist() {
 	var dist = 0;
@@ -29,7 +31,7 @@ function distParcial(n) {
 }
 
 function calcularPorcentajeParadas(n) {
-	return Math.trunc((distParcial(n)/totDist())*100) + "%";
+	return Math.trunc((distParcial(n)/totDist())*100);
 }
 
 function initMap() {
@@ -39,7 +41,9 @@ function initMap() {
 	})
 
 	var directionsService = new google.maps.DirectionsService();
-	//DirectionsRenderer initialized
+	var directionsRenderer = new google.maps.DirectionsRenderer({
+        supressMarkers: true
+    })
 
 	let request = {
 		origin: partida.location,
@@ -52,15 +56,15 @@ function initMap() {
 		console.log(result);
 		respuestaAPI = result;
 
-		printReport(0);
-		printReport(1);
-		printReport(2);
-		printReport(3);
-		printReport(4);
-		
+		//de 0 a 4
+		destinoActual = darObjParada(0);
+		printZero("Tu proxima parada es: " + destinoActual.name);
+		nActual = 0;
+
 		if (status == 'OK') {
-			//directionsRenderer.setDirections(result);
+            directionsRenderer.setDirections(result);
 		}
+		directionsRenderer.setMap(map);
 	}
 	)
 };
@@ -73,12 +77,40 @@ function print(message)
 		document.getElementById("mensaje").innerHTML = document.getElementById("mensaje").innerHTML + "<br/><br/>" + message;
 }
 
+function refreshProgress()
+{
+	document.getElementById('barraProgreso').style.width = destinoActual.porcentaje + "%";
+}
+
+function next()
+{
+	nActual += 1;
+	destinoActual = darObjParada(nActual);
+	refreshProgress();
+	printZero("Tu proxima parada es: " + destinoActual.name);
+}
+
+function printZero(message)
+{
+	document.getElementById("mensaje").innerHTML = message;
+}
+
 function darNombreParada(n)
 {
 	return respuestaAPI.routes[0].legs[n].end_address;
 }
 
+function darObjParada(n)
+{
+	var temp = {
+		name: darNombreParada(n),
+		distKm: distParcial(n)/1000,
+		porcentaje: calcularPorcentajeParadas(n)
+	};
+	return temp;
+}
+
 function printReport(n)
 {
-	print("La distancia hasta " + darNombreParada(n) + " es " + distParcial(n)/1000 + "km (" + calcularPorcentajeParadas(n) + ")");
+	print("La distancia hasta " + darNombreParada(n) + " es " + distParcial(n)/1000 + "km (" + calcularPorcentajeParadas(n) + "%)");
 }
